@@ -1,0 +1,353 @@
+﻿@{
+    ViewData["Title"] = "UserDetail";
+}
+
+<!DOCTYPE html>
+<html class="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="my-5">UserDetail</h1>
+        <button type="button" class="btn btn-primary btn-sm btn-icon icon-left col-sm-2" onclick="ModalInsert()">AddUser</button>
+        <center>
+            <table class="table table-striped table-bordered display" cellspacing="0" width="100%" id="UserDetailTable">
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>Username</th>
+                        <th>Address</th>
+                        <th>PhoneNumber</th>
+                        <th>FaxNumber</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                
+            </table>
+        </center>
+    </div>
+    <div class="modal fade" id="modalInsertUser" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal AddUser</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="text-dark">username : </label>
+                        <input type="text" class="form-control" id="AddUsername" name="AddUsername" placeholder="Enter your Username" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">address : </label>
+                        <input type="text" class="form-control" id="Addaddress" name="Addaddress" placeholder="Enter your address" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">Phone-Number : </label>
+                        <input type="text" class="form-control" id="AddPhoneNumber" name="AddPhoneNumber"
+                               placeholder="Enter your PhoneNumber" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Fax-Number : </label>
+                        <input type="text" class="form-control" id="AddFaxNumber" name="AddFaxNumber"
+                               placeholder="Enter your FaxNumber" autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="InsertUser()">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalUpdateUser" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal UpdateItem</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control" id="UpdateUserId" name="UpdateUserId" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">username : </label>
+                        <input type="text" class="form-control" id="UpdateUsername" name="UpdateUsername" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">address : </label>
+                        <input type="text" class="form-control" id="Updateaddress" name="Updateaddress" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">Phone-Number : </label>
+                        <input type="text" class="form-control" id="UpdatePhoneNumber" name="UpdatePhoneNumber" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Fax-Number : </label>
+                        <input type="text" class="form-control" id="UpdateFaxNumber" name="UpdateFaxNumber" autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="UpdateUser()">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDeleteUser" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal DeleteUser</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="DeleteUserID" name="DeleteUserID" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">username : </label>
+                        <input type="text" class="form-control" id="DeleteUsername" name="DeleteUsername" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">address : </label>
+                        <input type="text" class="form-control" id="Deleteaddress" name="Deleteaddress" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-dark">Phone-Number : </label>
+                        <input type="text" class="form-control" id="DeletePhoneNumber" name="DeletePhoneNumber" readonly>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Fax-Number : </label>
+                        <input type="text" class="form-control" id="DeleteFaxNumber" name="DeleteFaxNumber"
+                               placeholder="Enter your FaxNumber">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="CheckDelete()">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="modalCheckDelete" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal DeleteUser</h4>
+                </div>
+                <div class="modal-body">
+                    <center>You Want Delete Data (Yes/No) </center>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="DeleteUser()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.noConflict();
+        display();
+
+    });
+
+    function display() {
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/DataTableAsJsonUserDetail',
+            
+
+            success: function (data) {
+
+                
+                var obj = JSON.parse(data);
+
+                console.log(obj);
+
+                try {
+
+                    $("#UserDetailTable").destroy();
+                }
+                catch {
+                    $("#UserDetailTable").DataTable({
+                        data: obj,
+                        columns: [
+                            { data: "UserID" },
+                            { data: "UserName" },
+                            { data: "Address" },
+                            { data: "PhoneNumber" },
+                            { data: "FaxNumber" },
+                            {
+                                render: function (data, type) {   // HERE I NEED HELP
+                                    return "<button class='btn-edit btn btn-info btn-sm btn-icon icon-left col-sm-12'>Update</button>";
+                                }
+                            },
+                            {
+                                render: function (data, type) {   // HERE I NEED HELP
+                                    return "<button class='btn-delete btn btn-danger btn-sm btn-icon icon-left col-sm-12'>Delete</button>";
+                                }
+                            }
+
+                        ]
+                    });
+                }
+            }
+        });
+    };
+
+    function ModalInsert() {
+        $("#modalInsertUser").modal('show');
+    };
+
+    function InsertUser() {
+
+        var data = new FormData();
+        data.append("Username", $("#AddUsername").val());
+        data.append("address", $("#Addaddress").val());
+        data.append("PhoneNumber", $("#AddPhoneNumber").val());
+        data.append("FaxNumber", $("#AddFaxNumber").val());
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/InsertUser',
+            data: data,
+
+            success: function (data) {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    };
+
+    $(document).on('click', '.btn-edit', function () {
+
+        $("#modalUpdateUser").modal('show');
+
+        var table = $('#UserDetailTable').DataTable();
+        var jsonObj = table.row($(this).closest('td, li')).data();
+
+        var UserID = jsonObj.UserID;
+        var UserName = jsonObj.UserName;
+        var Address = jsonObj.Address;
+        var PhoneNumber = jsonObj.PhoneNumber;
+        var FaxNumber = jsonObj.FaxNumber;
+
+
+        $('#UpdateUserId').val(UserID);
+        $('#UpdateUsername').val(UserName);
+        $('#Updateaddress').val(Address);
+        $('#UpdatePhoneNumber').val(PhoneNumber);
+        $('#UpdateFaxNumber').val(FaxNumber);
+    });
+
+    function UpdateUser() {
+
+        var data = new FormData();
+        data.append("UpdateUserId", $("#UpdateUserId").val());
+        data.append("UpdateUsername", $("#UpdateUsername").val());
+        data.append("Updateaddress", $("#Updateaddress").val());
+        data.append("UpdatePhoneNumber", $("#UpdatePhoneNumber").val());
+        data.append("UpdateFaxNumber", $("#UpdateFaxNumber").val());
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/UpdateUser',
+            data: data,
+
+            success: function (data) {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    };
+
+    $(document).on('click', '.btn-delete', function () {
+
+        $("#modalDeleteUser").modal('show');
+
+        var table = $('#UserDetailTable').DataTable();
+        var jsonObj = table.row($(this).closest('td, li')).data();
+
+        var UserID = jsonObj.UserID;
+        var UserName = jsonObj.UserName;
+        var Address = jsonObj.Address;
+        var PhoneNumber = jsonObj.PhoneNumber;
+        var FaxNumber = jsonObj.FaxNumber;
+
+        $('#DeleteUserID').val(UserID);
+        $('#DeleteUsername').val(UserName);
+        $('#Deleteaddress').val(Address);
+        $('#DeletePhoneNumber').val(PhoneNumber);
+        $('#DeleteFaxNumber').val(FaxNumber);
+
+
+    });
+
+    function CheckDelete() {
+
+        $("#modalCheckDelete").modal('show');
+
+    };
+
+    function DeleteUser() {
+
+        var data = new FormData();
+        data.append("DeleteUserID", $("#DeleteUserID").val());
+
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/DeleteUser',
+            data: data,
+
+            success: function (data) {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    };
+
+</script>

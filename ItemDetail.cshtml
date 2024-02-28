@@ -1,0 +1,337 @@
+﻿@{
+    ViewData["Title"] = "ItemDetail";
+}
+
+<!DOCTYPE html>
+<html class="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="my-5">ItemDetail</h1>
+        <button type="button" class="btn btn-primary btn-sm btn-icon icon-left col-sm-2" onclick="ModalInsert()">AddItem</button>
+        <center>
+            <table class="table table-striped table-bordered display" cellspacing="0" width="100%" id="ItemDetailTable">
+                <thead>
+                    <tr>
+                        <th>ItemID</th>
+                        <th>Itemname</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                
+            </table>
+        </center>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalInsertItem" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal AddItem</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+
+                        <input type="hidden" class="form-control" id="AddItemID" name="AddItemID">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Itemname : </label>
+                        <input type="text" class="form-control" id="AddItemName" name="AddItemName" placeholder="Enter ItemName" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Price : </label>
+                        <input type="text" class="form-control" id="AddPrice" name="AddPrice" placeholder="Enter Price Item" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Total : </label>
+                        <input type="text" class="form-control" id="AddTotal" name="AddTotal" placeholder="Enter Total Item" autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="InsertItem()">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalUpdateItem" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal UpdateItem</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+                        
+                        <input type="hidden" class="form-control" id="UpdateItemID" name="UpdateItemID">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Itemname : </label>
+                        <input type="text" class="form-control" id="UpdateItemName" name="UpdateItemName" placeholder="Enter ItemName" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Price : </label>
+                        <input type="text" class="form-control" id="UpdatePrice" name="UpdatePrice" placeholder="Enter Price Item" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Total : </label>
+                        <input type="text" class="form-control" id="UpdateTotal" name="UpdateTotal" placeholder="Enter Total Item" autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="UpdateItem()">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDeleteItem" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal DeleteItem</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+
+                        <input type="hidden" class="form-control" id="DeleteItemID" name="DeleteItemID">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Itemname : </label>
+                        <input type="text" class="form-control" id="DeleteItemName" name="DeleteItemName" placeholder="Enter ItemName" readonly>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Price : </label>
+                        <input type="text" class="form-control" id="DeletePrice" name="DeletePrice" placeholder="Enter Price Item" readonly>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark">Total : </label>
+                        <input type="text" class="form-control" id="DeleteTotal" name="DeleteTotal" placeholder="Enter Total Item" readonly>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="CheckDelete()">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="modalCheckDelete" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal DeleteItem</h4>
+                </div>
+                <div class="modal-body">
+                    <center>You Want Delete Data (Yes/No) </center>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="DeleteItem()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.noConflict();
+
+        display();
+
+    });
+    
+    function display() {
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/DataTableAsJsonItemDetail',
+
+
+            success: function (data) {
+
+                
+                var obj = JSON.parse(data);
+
+                console.log(obj);
+
+                try {
+
+                    $("#ItemDetailTable").destroy();
+                }
+                catch {
+                    $("#ItemDetailTable").DataTable({
+                        data: obj,
+                        columns: [
+                            { data: "ItemID" },
+                            { data: "ItemName" },
+                            { data: "Price" },
+                            { data: "Total" },
+                            {
+                                render: function (data, type) {   // HERE I NEED HELP
+                                    return "<button class='btn-edit btn btn-info btn-sm btn-icon icon-left col-sm-12'>Update</button>";
+                                }
+                            },
+                            {
+                                render: function (data, type) {   // HERE I NEED HELP
+                                    return "<button class='btn-delete btn btn-danger btn-sm btn-icon icon-left col-sm-12'>Delete</button>";
+                                }
+                            }
+
+                        ]
+                    });
+                }
+            }
+        });
+    };
+
+    function ModalInsert() {
+        $("#modalInsertItem").modal('show');
+    };
+
+    function InsertItem() {
+
+        var data = new FormData();
+        data.append("AddItemName", $("#AddItemName").val());
+        data.append("AddPrice", $("#AddPrice").val());
+        data.append("AddTotal", $("#AddTotal").val());
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/InsertItem',
+            data: data,
+
+            success: function (data) {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    };
+
+    $(document).on('click', '.btn-edit', function () {
+        
+        $("#modalUpdateItem").modal('show');
+
+        var table = $('#ItemDetailTable').DataTable();
+        var jsonObj = table.row($(this).closest('td, li')).data();
+
+        var ItemID = jsonObj.ItemID;
+        var ItemName = jsonObj.ItemName;
+        var Price = jsonObj.Price;
+        var Total = jsonObj.Total;
+        
+
+        $('#UpdateItemID').val(ItemID);
+        $('#UpdateItemName').val(ItemName);
+        $('#UpdatePrice').val(Price);
+        $('#UpdateTotal').val(Total);
+    });
+
+    function UpdateItem() {
+
+        var data = new FormData();
+        data.append("UpdateItemID", $("#UpdateItemID").val());
+        data.append("UpdateItemName", $("#UpdateItemName").val());
+        data.append("UpdatePrice", $("#UpdatePrice").val());
+        data.append("UpdateTotal", $("#UpdateTotal").val());
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/UpdateItem',
+            data: data,
+
+            success: function (data) {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    };
+
+    $(document).on('click', '.btn-delete', function () {
+
+        $("#modalDeleteItem").modal('show');
+
+        var table = $('#ItemDetailTable').DataTable();
+        var jsonObj = table.row($(this).closest('td, li')).data();
+
+        var ItemID = jsonObj.ItemID;
+        var ItemName = jsonObj.ItemName;
+        var Price = jsonObj.Price;
+        var Total = jsonObj.Total;
+
+
+        $('#DeleteItemID').val(ItemID);
+        $('#DeleteItemName').val(ItemName);
+        $('#DeletePrice').val(Price);
+        $('#DeleteTotal').val(Total);
+
+        
+    });
+
+    function CheckDelete() {
+
+        $("#modalCheckDelete").modal('show');
+        
+        };
+
+    function DeleteItem() {
+
+        var data = new FormData();
+        data.append("DeleteItemID", $("#DeleteItemID").val());
+       
+
+        $.ajax({
+            async: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            url: '/Clients/DeleteItem',
+            data: data,
+
+            success: function (data) {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    };
+</script>
